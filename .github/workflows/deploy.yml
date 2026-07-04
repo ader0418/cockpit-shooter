@@ -1,0 +1,57 @@
+# GitHub Actions 工作流程：自動 build 並部署到 GitHub Pages
+# 每次推送到 main 分支時，會自動打包專案並發布到線上遊戲網址。
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main] # 推送到 main 分支時觸發
+  workflow_dispatch: # 也允許在 Actions 頁面手動觸發
+
+# 授予工作流程部署 Pages 所需的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時只跑一個部署，若有新推送則取消進行中的舊部署
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # 第一階段：打包
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 取出原始碼
+        uses: actions/checkout@v4
+
+      - name: 安裝 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 安裝相依套件
+        run: npm ci
+
+      - name: 打包專案
+        run: npm run build
+
+      - name: 上傳打包結果供部署使用
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist # Vite 打包輸出的資料夾
+
+  # 第二階段：部署
+  deploy:
+    needs: build # 等 build 完成才執行
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
