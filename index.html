@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cockpit Shooter｜駕駛艙射擊</title>
+    <style>
+      /* 基礎重置：移除邊界、隱藏卷軸、深色底 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #05070d;
+        font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        color: #d8e6ff;
+        user-select: none; /* 遊戲中避免誤選字 */
+      }
+
+      /* 遊戲舞台：WebGL canvas 與 HUD 都疊在這裡 */
+      #game-root {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* Three.js 產生的 canvas 會被塞進這裡（最底層） */
+      #canvas-container {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      /* HUD 層：疊在 canvas 之上，第九階段會把儀表板 UI 放進來 */
+      #hud-root {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none; /* 預設讓滑鼠事件穿透到遊戲，個別按鈕再開啟 */
+      }
+
+      /* 載入中畫面 */
+      #boot-screen {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: #05070d;
+        transition: opacity 0.6s ease;
+      }
+      #boot-screen h1 {
+        font-size: 28px;
+        letter-spacing: 4px;
+        color: #6fb7ff;
+      }
+      #boot-screen p {
+        font-size: 14px;
+        color: #7d8ba5;
+      }
+      #boot-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game-root">
+      <!-- WebGL 渲染畫布容器 -->
+      <div id="canvas-container"></div>
+
+      <!-- HUD 儀表板層（後續階段填入） -->
+      <div id="hud-root"></div>
+
+      <!-- 開場載入畫面 -->
+      <div id="boot-screen">
+        <h1>COCKPIT SHOOTER</h1>
+        <p>正在初始化系統…</p>
+      </div>
+    </div>
+
+    <!-- 進入點：Vite 會處理這個 TypeScript 模組 -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

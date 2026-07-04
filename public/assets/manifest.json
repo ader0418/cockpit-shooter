@@ -1,0 +1,29 @@
+{
+  "_comment": "資源清單：集中管理所有美術/音效素材路徑。程式只認 key 不寫死路徑，之後替換高解析度素材時只要改這裡的 path 即可。AssetManager（後續階段）會讀取此檔並在素材缺失時使用程式生成的 placeholder。",
+
+  "models": {
+    "player_cockpit": { "path": "models/player_cockpit.glb", "optional": true },
+    "enemy_aircraft": { "path": "models/enemy_aircraft.glb", "optional": true },
+    "enemy_tank": { "path": "models/enemy_tank.glb", "optional": true },
+    "enemy_elite": { "path": "models/enemy_elite.glb", "optional": true }
+  },
+
+  "textures": {
+    "bg_sky": { "path": "textures/bg_sky.png", "optional": true },
+    "bg_clouds": { "path": "textures/bg_clouds.png", "optional": true },
+    "bg_city": { "path": "textures/bg_city.png", "optional": true },
+    "reticle": { "path": "textures/reticle.png", "optional": true },
+    "icon_machinegun": { "path": "textures/icon_machinegun.png", "optional": true },
+    "icon_missile": { "path": "textures/icon_missile.png", "optional": true },
+    "icon_laser": { "path": "textures/icon_laser.png", "optional": true },
+    "cockpit_frame": { "path": "textures/cockpit_frame.png", "optional": true }
+  },
+
+  "audio": {
+    "sfx_machinegun": { "path": "audio/sfx_machinegun.wav", "optional": true },
+    "sfx_missile": { "path": "audio/sfx_missile.wav", "optional": true },
+    "sfx_laser": { "path": "audio/sfx_laser.wav", "optional": true },
+    "sfx_explosion": { "path": "audio/sfx_explosion.wav", "optional": true },
+    "bgm_stage": { "path": "audio/bgm_stage.mp3", "optional": true }
+  }
+}

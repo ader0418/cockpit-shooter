@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* 編譯目標與模組系統：使用現代瀏覽器支援的 ES2020 與 ESM */
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    /* 型別嚴格度：全開，讓編譯期就抓出錯誤（開源專案品質保證） */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* 開發體驗設定 */
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+
+    /* Vite 使用 esbuild 轉譯，tsc 只負責型別檢查，不輸出檔案 */
+    "noEmit": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true
+  },
+  "include": ["src"]
+}

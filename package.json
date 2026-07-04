@@ -1,0 +1,27 @@
+{
+  "name": "cockpit-shooter",
+  "version": "0.1.0",
+  "description": "第一人稱駕駛艙視角街機飛行射擊遊戲（Three.js + TypeScript）",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "game",
+    "threejs",
+    "typescript",
+    "flight-shooter",
+    "arcade"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.169.0",
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0"
+  }
+}
